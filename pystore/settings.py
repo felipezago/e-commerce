@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'users.apps.UsersConfig',
     'pages.apps.PagesConfig',
+    'cart.apps.CartConfig',
     'products.apps.ProductsConfig',
     'debug_toolbar',
 ]
@@ -133,3 +134,6 @@ import socket
 
 hostname, _, ips = socket.gethostbyname_ex(socket.gethostname())
 INTERNAL_IPS = [ip[:-1] + "1" for ip in ips]
+
+CART_SESSION_ID = "cart"
+CART_ITEM_MAX_QUANTITY = 20
