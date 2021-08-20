@@ -9,8 +9,9 @@ https://docs.djangoproject.com/en/3.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
-
+import os
 from pathlib import Path
+import socket
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -39,7 +40,11 @@ INSTALLED_APPS = [
     'pages.apps.PagesConfig',
     'cart.apps.CartConfig',
     'products.apps.ProductsConfig',
+    'orders.apps.OrdersConfig',
     'debug_toolbar',
+    'widget_tweaks',
+    'crispy_forms',
+    'localflavor',
 ]
 
 MIDDLEWARE = [
@@ -121,19 +126,19 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
-STATIC_URL = '/static/'
-STATICFILES_DIR = [BASE_DIR / 'static']
-STATIC_ROOT = [BASE_DIR / 'staticfiles']
+STATIC_URL = "/static/"
+STATICFILES_DIRS = [BASE_DIR / "static"]
+STATIC_ROOT = BASE_DIR / "staticfiles"
 
 AUTH_USER_MODEL = "users.User"
 
 MEDIA_URL = "/media/"
 MEDIA_ROOT = BASE_DIR / "media"
 
-import socket
-
 hostname, _, ips = socket.gethostbyname_ex(socket.gethostname())
 INTERNAL_IPS = [ip[:-1] + "1" for ip in ips]
 
 CART_SESSION_ID = "cart"
 CART_ITEM_MAX_QUANTITY = 20
+
+CRISPY_TEMPLATE_PACK = "bootstrap4"

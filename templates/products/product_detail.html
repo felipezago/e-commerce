@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 
 {% load static %}
+{% load widget_tweaks %}
 
 {% block title %}{{ product.name }}{% endblock title %}
 
@@ -22,7 +23,7 @@
             <form class="form-group" action="{% url 'cart:add' product.id %}" method="POST">
                 <p class="form-inline">
                     {{ form.quantity.label_tag }}
-                    {{ form.quantity }}
+                    {% render_field form.quantity class+="form-control ml-sm-3" %}
                     {{ form.override }}
                 </p>
                 {% csrf_token %}
